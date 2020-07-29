@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <p-table #dt [value]="myOrders" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 100px;">
+              Wiersz
+            </th>
+            <th>
+              Opis zlecenia
+            </th>
+            <th style="width: 300px;">Opcje</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order let-i="rowIndex">
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ order.orderDescription }}</td>
+            <td>
+              <button (click)="showDetails(order.id)" pButton label="Szczegóły"></button>
+              <button (click)="showEditOrder(order.id)" style="margin-left: 7px;" pButton type="button" label="Edytuj"
+                class="ui-button-success"></button>
+              <button style="margin-left: 7px;" (click)="unsubscribeOrderByWorker(order.id)" pButton type="button"
+                label="Zrezygnuj" class="ui-button-danger"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

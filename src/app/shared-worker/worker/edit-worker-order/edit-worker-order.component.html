@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="updateForm">
+        <div class="form-group">
+          <p-table>
+            <ng-template pTemplate="header">
+              <tr>
+                <th>
+                  Id zlecenia:
+                  <span style="color: royalblue;">{{ order.id }} </span>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Klient:
+                  <span style="color: royalblue;"> Thomas Jeferson</span>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Marka:
+                  <span style="color: royalblue;">{{ order.mark }}</span>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Rodzaj silnika:
+                  <span style="color: royalblue;">{{ order.engineKind }}</span>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Moc:
+                  <span style="color: royalblue;">{{ order.power }}</span>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Planowana data wizyty:
+                  <span style="color: royalblue;">{{
+                    order.visitDate | date
+                  }}</span>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Opis problemu:
+                  <span style="color: royalblue;">{{
+                    order.orderDescription
+                  }}</span>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Rodzaj zlecenia:
+                  <span style="color: royalblue;">
+                    <p-dropdown
+                      [options]="orderKinds"
+                      formControlName="orderKind"
+                    ></p-dropdown>
+                  </span>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Status zlecenia:
+                  <span style="color: royalblue;">
+                    <p-dropdown
+                      [options]="orderStatuses"
+                      formControlName="orderStatus"
+                    ></p-dropdown>
+                  </span>
+                </th>
+              </tr>
+              <tr>
+                <th>
+                  Cena:
+                  <span style="color: royalblue;"
+                    ><input
+                      style="width: 200px;"
+                      formControlName="price"
+                      type="text"
+                      class="form-control"
+                      pInputText
+                    />
+                    <div
+                      *ngIf="
+                        updateForm.get('price').touched &&
+                        updateForm.get('price').invalid
+                      "
+                      class="warring"
+                    >
+                      <div *ngIf="updateForm.get('price').errors.required">
+                        <p-message
+                          severity="error"
+                          text="To pole nie może być puste!"
+                        ></p-message>
+                      </div>
+                      <div *ngIf="updateForm.get('price').errors.pattern">
+                        <p-message
+                          severity="error"
+                          text="To pole musi być liczbą!"
+                        ></p-message>
+                      </div>
+                    </div>
+                  </span>
+                </th>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </form>
+
+      <button
+        pButton
+        (click)="updateOrder()"
+        type="button"
+        label="Potwierdź"
+        class="ui-button-success"
+      ></button>
+
+      <div *ngIf="isSuccesInEditOrder">
+        <p-messages severity="info">
+          <ng-template pTemplate>
+            <span class="custom-message"> Zamówienie zostało edytowane.</span>
+          </ng-template>
+        </p-messages>
+      </div>
+    </div>
+  </div>
+</div>

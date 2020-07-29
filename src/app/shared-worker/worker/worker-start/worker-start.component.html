@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h6 class="first">Panel pracownika</h6>
+      <p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>
+    </div>
+  </div>
+</div>
+
+<!-- <app-konto *ngIf="isShowedAccount" [userId]="userId"></app-konto> -->
+<app-account-worker *ngIf="isShowedAccount" [workerId]="workerId"></app-account-worker>
+
+<app-orders (orderDetailsId)="changeWindow($event)" *ngIf="isShowedOrders" [workerId]="workerId"></app-orders>
+
+<order-details *ngIf="isShowOrderDetails" [orderDetailsId]="orderDetailsId"></order-details>
+
+<app-edit-worker-order *ngIf="isShowedEditOrder" [orderDetailsId]="orderDetailsId"></app-edit-worker-order>
+
+<app-not-worker-orders (orderDetailsId)="changeWindow($event)" *ngIf="isShowedOrdersWithoutWorker"
+  [workerId]="workerId"></app-not-worker-orders>

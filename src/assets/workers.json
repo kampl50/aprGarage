@@ -1,0 +1,39 @@
+[{
+    "id": 1,
+    "login": "worker1",
+    "password": "worker1",
+    "role": "WORKER",
+    "name": "Jaroslaw",
+    "surname": "Syrek",
+    "email": "jaroslaw@gmail.com",
+    "phone": "5436457654",
+    "experience": 5,
+    "preferMark": "OPEL"
+
+  },
+  {
+    "id": 2,
+    "login": "worker2",
+    "password": "worker2",
+    "role": "WORKER",
+    "name": "Gosia",
+    "surname": "Fajnistka",
+    "email": "kozuchowska@gmail.com",
+    "phone": "243564364",
+    "experience": 8,
+    "preferMark": "AUDI"
+
+  },
+  {
+    "id": 3,
+    "login": "user3",
+    "password": "user3",
+    "role": "USER",
+    "name": "Conor",
+    "surname": "Mcgregor",
+    "email": "gregormc@ufc.com",
+    "phone": "878373123",
+    "experience": 3,
+    "preferMark": "BMW"
+  }
+]

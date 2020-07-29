@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <form [formGroup]="logForm">
+        <div class="form-group">
+          <label for="login">Login</label>
+          <input
+            formControlName="login"
+            id="login"
+            type="text"
+            size="30"
+            class="form-control"
+            placeholder="Login"
+            pInputText
+          />
+          <div
+            *ngIf="logForm.get('login').touched && logForm.get('login').invalid"
+            class="warring"
+          >
+            <div *ngIf="logForm.get('login').errors.required">
+              <p-message
+                severity="error"
+                text="To pole nie może być puste!"
+              ></p-message>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            formControlName="password"
+            id="password"
+            type="password"
+            size="30"
+            class="form-control"
+            placeholder="Hasło"
+            pInputText
+          />
+          <div
+            *ngIf="
+              logForm.get('password').touched && logForm.get('password').invalid
+            "
+            class="warring"
+          >
+            <div *ngIf="logForm.get('password').errors.required">
+              <p-message
+                severity="error"
+                text="To pole nie może być puste!"
+              ></p-message>
+            </div>
+          </div>
+          <small id="emailHelp" class="form-text text-muted"
+            >Nigdy nie udostępniaj swojego loginu oraz hasła!.</small
+          >
+        </div>
+        <p-button
+          [disabled]="logForm.invalid"
+          (click)="logIn()"
+          label="Zaloguj"
+        ></p-button>
+      </form>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>

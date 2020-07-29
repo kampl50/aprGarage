@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <p-table>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>
+              Id:
+              <span style="color: royalblue;">{{ order.id }}</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Klient:
+              <span style="color: royalblue;">{{ clientName}} {{clientSurname}}</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Pracownik:
+              <span style="color: royalblue;">{{ workerName}} {{workerSurname}}</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Marka:
+              <span style="color: royalblue;">{{ order.mark }}</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Rodzaj silnika:
+              <span style="color: royalblue;">{{ order.engineKind }}</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Moc:
+              <span style="color: royalblue;">{{ order.power }}</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Planowana data wizyty:
+              <span style="color: royalblue;">{{
+                order.visitDate | date
+              }}</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Opis problemu:
+              <span style="color: royalblue;">{{
+                order.orderDescription
+              }}</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Status zlecenia:
+              <span style="color: royalblue;">{{ order.orderStatus }}</span>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              Cena:
+              <span style="color: royalblue;">{{ order.price }} PLN</span>
+            </th>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

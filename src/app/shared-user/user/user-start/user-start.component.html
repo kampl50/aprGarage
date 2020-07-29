@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <h6 class="first">Panel użytkownika</h6>
+      <p-tabMenu [model]="items" [activeItem]="items[0]"></p-tabMenu>
+    </div>
+  </div>
+</div>
+
+<order-details *ngIf="isShowedOrderDetails" [orderDetailsId]="orderDetailsId"></order-details>
+<app-konto *ngIf="isShowedAccount" [userId]="userId"></app-konto>
+<app-take-order *ngIf="isShowedCreateNotificate" [userId]="userId"></app-take-order>
+<app-list-order (orderDetailsId)="changeWindow($event)" *ngIf="isShowedNotifications" [userId]="userId">
+</app-list-order>

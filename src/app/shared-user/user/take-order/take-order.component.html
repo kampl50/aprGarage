@@ -1,0 +1,175 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="takeOrderForm">
+        <div class="form-group">
+          <label for="mark">Marka auta</label>
+          <div>
+            <p-dropdown formControlName="mark" [options]="marks"></p-dropdown>
+          </div>
+          <label for="engineKind">Rodzaj silnika</label>
+          <div style>
+            <p-dropdown
+              formControlName="engineKind"
+              [options]="engineKinds"
+            ></p-dropdown>
+          </div>
+          <label for="power">Moc silnika</label>
+          <div>
+            <input
+              formControlName="power"
+              id="power"
+              type="text"
+              size="30"
+              class="form-control"
+              pInputText
+            />
+            <div
+              *ngIf="
+                takeOrderForm.get('power').touched &&
+                takeOrderForm.get('power').invalid
+              "
+              class="warring"
+            >
+              <div *ngIf="takeOrderForm.get('power').errors.required">
+                <p-message
+                  severity="error"
+                  text="To pole nie może być puste."
+                ></p-message>
+              </div>
+              <div *ngIf="takeOrderForm.get('power').errors.pattern">
+                <p-message
+                  severity="error"
+                  text="To pole musi być liczbą!."
+                ></p-message>
+              </div>
+              <div *ngIf="takeOrderForm.get('power').errors.maxlength">
+                <p-message
+                  severity="error"
+                  text="Maksymalna długość to 5 znaków!."
+                ></p-message>
+              </div>
+            </div>
+          </div>
+
+          <label for="visitDate">Planowana data wizyty</label>
+          <input type="date" formControlName="visitDate" class="form-control" />
+          <div
+            *ngIf="
+              takeOrderForm.get('visitDate').touched &&
+              takeOrderForm.get('visitDate').invalid
+            "
+            class="warring"
+          >
+            <div *ngIf="takeOrderForm.get('visitDate').errors.required">
+              <p-message
+                severity="error"
+                text="To pole nie może być puste!"
+              ></p-message>
+            </div>
+          </div>
+
+          <label for="orderDescription">Opis problemu</label>
+          <div>
+            <textarea
+              style="width: 1110px;"
+              formControlName="orderDescription"
+              id="orderDescription"
+              type="text"
+              pInputTextarea
+            ></textarea>
+            <div
+              *ngIf="
+                takeOrderForm.get('orderDescription').touched &&
+                takeOrderForm.get('orderDescription').invalid
+              "
+              class="warring"
+            >
+              <div
+                *ngIf="takeOrderForm.get('orderDescription').errors.required"
+              >
+                <p-message
+                  severity="error"
+                  text="To pole nie może być puste!"
+                ></p-message>
+              </div>
+              <div
+                *ngIf="takeOrderForm.get('orderDescription').errors.maxlength"
+              >
+                <p-message
+                  severity="error"
+                  text="Maksymalna długość to 100 znaków!."
+                ></p-message>
+              </div>
+            </div>
+          </div>
+          <label for="orderKind">Rodzaj zgłoszenia</label>
+          <div>
+            <p-dropdown
+              formControlName="orderKind"
+              [options]="orderKinds"
+            ></p-dropdown>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <button
+        (click)="showCard()"
+        pButton
+        type="button"
+        label="Złóż zamówienie"
+        [disabled]="takeOrderForm.invalid"
+        class="ui-button-success"
+      ></button>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 30px;" class="container">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="isSuccesInTakeOrder">
+        <p-messages severity="info">
+          <ng-template pTemplate>
+            <span class="custom-message"> Zamówienie zostało złożone.</span>
+          </ng-template>
+        </p-messages>
+      </div>
+      <p-card
+        *ngIf="card"
+        header="Uwaga!"
+        [style]="{ width: '360px' }"
+        styleClass="ui-card-shadow"
+      >
+        <div style="line-height: 1.5;">
+          Czy na pewno chcesz złożyć zamówienie ?
+        </div>
+        <p-footer>
+          <button
+            pButton
+            type="button"
+            label=" TAK"
+            icon="pi pi-check"
+            style="margin-right: 0.25em;"
+            (click)="takeOrder()"
+          ></button>
+          <button
+            pButton
+            type="button"
+            label=" NIE"
+            icon="pi pi-times"
+            class="ui-button-secondary"
+            style="margin-left: 10px;"
+            (click)="hiddenCard()"
+          ></button>
+        </p-footer>
+      </p-card>
+    </div>
+  </div>
+</div>

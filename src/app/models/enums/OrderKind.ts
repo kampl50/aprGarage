@@ -1,0 +1,6 @@
+export enum OrderKind {
+  OVERVIEW = 'PRZEGLĄD',
+  DIAGNOSTICS = 'DIAGNOSTYKA',
+  REPAIR = 'NAPRAWA',
+  EXCHANGE_PART = 'WYMIANA CZĘŚCI',
+}

@@ -1,0 +1,206 @@
+<div *ngIf="isShowedDataWorker">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p-table>
+          <ng-template pTemplate="header">
+            <tr>
+              <th>
+                Id: <span style="color: royalblue;">{{ loggedWorker.id }}</span>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Imię:
+                <span style="color: royalblue;">{{ loggedWorker.name }}</span>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Nazwisko:
+                <span style="color: royalblue;">{{
+                  loggedWorker.surname
+                }}</span>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Doświadczenie:
+                <span style="color: royalblue;">{{ loggedWorker.experience }} lat</span>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Preferowana marka:
+                <span style="color: royalblue;">{{
+                  loggedWorker.preferMark
+                }}</span>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Telefon:
+                <span style="color: royalblue;">{{ loggedWorker.phone }}</span>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Email:
+                <span style="color: royalblue;">{{ loggedWorker.email }}</span>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Login:
+                <span style="color: royalblue;">{{ loggedWorker.login }}</span>
+              </th>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button (click)="showUpdateAccount()" pButton type="button" label="Aktualizuj dane"></button>
+        <button style="margin-left: 25px;" (click)="showCard()" pButton type="button" label=" Usuń konto"
+          class="ui-button-danger"></button>
+        <p-card *ngIf="card" header="Uwaga!" [style]="{ width: '360px' }" styleClass=" ui-card-shadow">
+          <div style="line-height: 1.5;">
+            Czy na pewno chcesz usunąć konto ?
+          </div>
+          <p-footer>
+            <button pButton type="button" label=" TAK" icon="pi pi-check" style="margin-right: 0.25em;"
+              (click)="deleteAccount()"></button>
+            <button pButton type="button" label=" NIE" icon="pi pi-times" class="ui-button-secondary"
+              style="margin-left: 10px;" (click)="hiddenCard()"></button>
+          </p-footer>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isShowedUpdate">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form [formGroup]="updateForm">
+          <div class="form-group">
+            <label for="name">Imię</label>
+            <div>
+              <input formControlName="name" id="name" type="text" size="30" class="form-control" pInputText />
+              <div *ngIf="
+                  updateForm.get('name').touched &&
+                  updateForm.get('name').invalid
+                " class="warring">
+                <div *ngIf="updateForm.get('name').errors.required">
+                  <p-message severity="error" text="To pole nie może być puste!"></p-message>
+                </div>
+                <div *ngIf="updateForm.get('name').errors.maxlength">
+                  <p-message severity="error" text="To pole moze mieć maksymalnie 30 znaków!"></p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="surname">Nazwisko</label>
+            <div>
+              <input formControlName="surname" id="surname" type="text" size="30" class="form-control" pInputText />
+              <div *ngIf="
+                  updateForm.get('surname').touched &&
+                  updateForm.get('surname').invalid
+                " class="warring">
+                <div *ngIf="updateForm.get('surname').errors.required">
+                  <p-message severity="error" text="To pole nie może być puste!"></p-message>
+                </div>
+                <div *ngIf="updateForm.get('surname').errors.maxlength">
+                  <p-message severity="error" text="To pole moze mieć maksymalnie 30 znaków!"></p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="experience">Doświadczenie</label>
+            <div>
+              <input formControlName="experience" id="experience" type="text" size="30" class="form-control"
+                pInputText />
+              <div *ngIf="
+                  updateForm.get('experience').touched &&
+                  updateForm.get('experience').invalid
+                " class="warring">
+                <div *ngIf="updateForm.get('experience').errors.required">
+                  <p-message severity="error" text="To pole nie może być puste!"></p-message>
+                </div>
+                <div *ngIf="updateForm.get('experience').errors.pattern">
+                  <p-message severity="error" text="To pole musi być cyfrą!"></p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="preferMark">Preferowana marka</label>
+            <div>
+              <div>
+                <p-dropdown formControlName="preferMark" [options]="marks"></p-dropdown>
+              </div>
+              <div *ngIf="
+                  updateForm.get('preferMark').touched &&
+                  updateForm.get('preferMark').invalid
+                " class="warring">
+                <div *ngIf="updateForm.get('preferMark').errors.required">
+                  <p-message severity="error" text="To pole nie może być puste!"></p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <div>
+              <input formControlName="phone" id="phone" type="text" size="30" class="form-control" pInputText />
+              <div *ngIf="
+                  updateForm.get('phone').touched &&
+                  updateForm.get('phone').invalid
+                " class="warring">
+                <div *ngIf="updateForm.get('phone').errors.pattern">
+                  <p-message severity="error" text="To pole musi byc numerem telefonu!"></p-message>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <div>
+              <input formControlName="email" id="email" type="text" size="30" class="form-control" pInputText />
+              <div *ngIf="
+                  updateForm.get('email').errors !== null &&
+                  updateForm.get('email').errors.email
+                ">
+                <p-message severity="error" text="To pole musi byc e-mailem!"></p-message>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <button (click)="showCard()" pButton type="button" label="Aktualizuj" class="ui-button-success"
+          [disabled]="updateForm.invalid"></button>
+        <div style="margin-top: 20px;"></div>
+        <p-card *ngIf="card" header="Uwaga!" [style]="{ width: '360px' }" styleClass="ui-card-shadow">
+          <div style="line-height: 1.5;">
+            Czy na pewno chcesz zaktualizować ?
+          </div>
+          <p-footer>
+            <button pButton type="button" label=" TAK" icon="pi pi-check" style="margin-right: 0.25em;"
+              (click)="updateAccount()"></button>
+            <button pButton type="button" label=" NIE" icon="pi pi-times" class="ui-button-secondary"
+              style="margin-left: 10px;" (click)="hiddenCard()"></button>
+          </p-footer>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</div>
